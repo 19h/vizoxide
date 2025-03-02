@@ -1,7 +1,7 @@
-use graphviz::{Graph, Context};
-use graphviz::layout::{apply_layout, Engine};
-use graphviz::render::{render_to_file, Format};
-use graphviz::attr::{graph, node, edge};
+use vizoxide::{Graph, Context};
+use vizoxide::layout::{apply_layout, Engine};
+use vizoxide::render::{render_to_file, Format};
+use vizoxide::attr::{graph, node, edge};
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {

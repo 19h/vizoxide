@@ -1,8 +1,8 @@
-use graphviz::{Graph, Context};
-use graphviz::layout::{
+use vizoxide::{Graph, Context};
+use vizoxide::layout::{
     apply_layout, Engine, radial_layout, force_directed_layout
 };
-use graphviz::render::{render_to_file, Format};
+use vizoxide::render::{render_to_file, Format};
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
