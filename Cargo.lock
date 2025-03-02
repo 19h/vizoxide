@@ -110,15 +110,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a8d1add55171497b4705a648c6b583acafb01d58050a51727785f0b2c8e0a2b2"
 
 [[package]]
-name = "graphviz-rs"
-version = "1.0.1"
-dependencies = [
- "base64",
- "graphviz-sys",
- "tempfile",
-]
-
-[[package]]
 name = "graphviz-sys"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -304,6 +295,15 @@ name = "unicode-ident"
 version = "1.0.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "00e2473a93778eb0bad35909dff6a10d28e63f792f16ed15e404fca9d5eeedbe"
+
+[[package]]
+name = "vizoxide"
+version = "1.0.1"
+dependencies = [
+ "base64",
+ "graphviz-sys",
+ "tempfile",
+]
 
 [[package]]
 name = "wasi"

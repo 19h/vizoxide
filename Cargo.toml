@@ -1,11 +1,29 @@
 [package]
-name = "graphviz-rs"
+name = "vizoxide"
 version = "1.0.1"
 edition = "2021"
 license = "MIT"
 authors = ["Kenan Sulayman <kenan@sly.mn>"]
-description = "An ergonomic wrapper for graphviz."
+description = "Vizoxide is a high-level, memory-safe Rust wrapper for Graphviz that provides an idiomatic, builder-pattern interface for creating, styling, laying out, and rendering complex graphs in various output formats."
 readme = "readme.md"
+
+keywords = [
+    "graphviz",
+    "vizoxide",
+    "graph",
+    "visualization",
+    "layout",
+    "rendering",
+    "diagram",
+    "builder-pattern",
+    "ffi-wrapper",
+    "rust",
+    "safe",
+    "raii",
+    "high-level",
+    "node",
+    "edge"
+]
 
 [lib]
 path = "src/lib.rs"

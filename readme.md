@@ -1,7 +1,7 @@
-# GraphViz
+# vizoxide - An idiomatic GraphViz wrapper for Rust
 
-[![Crates.io](https://img.shields.io/crates/v/graphviz-rs.svg)](https://crates.io/crates/graphviz-rs)
-[![Documentation](https://docs.rs/graphviz-rs/badge.svg)](https://docs.rs/graphviz-rs)
+[![Crates.io](https://img.shields.io/crates/v/vizoxide.svg)](https://crates.io/crates/vizoxide)
+[![Documentation](https://docs.rs/vizoxide/badge.svg)](https://docs.rs/vizoxide)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A comprehensive, memory-safe Rust wrapper for the GraphViz graph visualization library. This crate provides an ergonomic, idiomatic Rust interface for creating, manipulating, and rendering graphs.
