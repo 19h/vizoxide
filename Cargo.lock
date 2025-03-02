@@ -298,7 +298,7 @@ checksum = "00e2473a93778eb0bad35909dff6a10d28e63f792f16ed15e404fca9d5eeedbe"
 
 [[package]]
 name = "vizoxide"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "base64",
  "graphviz-sys",
