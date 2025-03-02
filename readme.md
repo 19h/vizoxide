@@ -1,7 +1,7 @@
 # GraphViz
 
-[![Crates.io](https://img.shields.io/crates/v/graphviz.svg)](https://crates.io/crates/graphviz)
-[![Documentation](https://docs.rs/graphviz/badge.svg)](https://docs.rs/graphviz)
+[![Crates.io](https://img.shields.io/crates/v/graphviz-rs.svg)](https://crates.io/crates/graphviz-rs)
+[![Documentation](https://docs.rs/graphviz-rs/badge.svg)](https://docs.rs/graphviz-rs)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A comprehensive, memory-safe Rust wrapper for the GraphViz graph visualization library. This crate provides an ergonomic, idiomatic Rust interface for creating, manipulating, and rendering graphs.

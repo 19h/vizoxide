@@ -1,5 +1,5 @@
 [package]
-name = "graphviz"
+name = "graphviz-rs"
 version = "1.0.1"
 edition = "2021"
 license = "MIT"
