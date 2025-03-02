@@ -1,0 +1,54 @@
+[package]
+name = "graphviz"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+base64 = "0.22.1"
+graphviz-sys = "1.0.0"
+
+[dev-dependencies]
+tempfile = "3.10.1"
+
+[[example]]
+name = "simple_graph"
+path = "examples/simple_graph.rs"
+
+[[example]]
+name = "complex_graph_with_build_pattern"
+path = "examples/complex_graph_with_build_pattern.rs"
+
+[[example]]
+name = "edge_builder_with_multiple_attributes"
+path = "examples/edge_builder_with_multiple_attributes.rs"
+
+[[example]]
+name = "predefined_layout_settings"
+path = "examples/predefined_layout_settings.rs"
+
+[[example]]
+name = "creating_context_with_plugins"
+path = "examples/creating_context_with_plugins.rs"
+
+[[example]]
+name = "iterating_over_nodes_and_edges"
+path = "examples/iterating_over_nodes_and_edges.rs"
+
+[[example]]
+name = "render_graph_to_string_and_bytes"
+path = "examples/render_graph_to_string_and_bytes.rs"
+
+[[example]]
+name = "custom_layout_settings"
+path = "examples/custom_layout_settings.rs"
+
+[[example]]
+name = "modifying_attributes_and_removing_them"
+path = "examples/modifying_attributes_and_removing_them.rs"
+
+[[example]]
+name = "render_graph_to_writer"
+path = "examples/render_graph_to_writer.rs"
