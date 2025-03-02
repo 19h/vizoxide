@@ -6,6 +6,8 @@ license = "MIT"
 authors = ["Kenan Sulayman <kenan@sly.mn>"]
 description = "Vizoxide is a high-level, memory-safe Rust wrapper for Graphviz that provides an idiomatic, builder-pattern interface for creating, styling, laying out, and rendering complex graphs in various output formats."
 readme = "readme.md"
+repository = "https://github.com/19h/vizoxide"
+documentation = "https://docs.rs/vizoxide"
 
 keywords = ["graphviz", "visualization", "layout", "rendering", "diagram"]
 
