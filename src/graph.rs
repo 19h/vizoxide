@@ -984,20 +984,35 @@ impl AttributeContainer for Graph {
 
 impl<'a> AttributeContainer for Node<'a> {
     fn set_attribute(&self, name: &str, value: &str) -> Result<(), GraphvizError> {
-        let c_name = CString::new(name)?;
-        let c_value = CString::new(value)?;
+        let graph = unsafe { sys::agraphof(self.inner as *mut _) };
+        let name_cstr = CString::new(name)?;
+        let value_cstr = CString::new(value)?;
+        let empty_str = CString::new("")?;
         
-        // Get the graph from the node to access its inner Agraph_t
-        let graph_ptr = unsafe { sys::agraphof(self.inner) };
-        
-        let result = unsafe {
-            sys::agset(self.inner as *mut sys::Agobj_t, c_name.as_ptr(), c_value.as_ptr())
+        // First create/get the attribute with empty string as default
+        // This avoids setting a meaningful default for all nodes
+        let sym = unsafe {
+            sys::agattr(
+                graph,
+                sys::AGNODE as i32,
+                name_cstr.as_ptr() as *mut _,
+                empty_str.as_ptr()
+            )
         };
         
-        if result.is_null() {
-            Err(GraphvizError::AttributeSetFailed)
-        } else {
+        if sym.is_null() {
+            return Err(GraphvizError::AttributeSetFailed);
+        }
+        
+        // Now set the value only on this specific node
+        let result = unsafe { 
+            sys::agxset(self.inner as *mut _, sym, value_cstr.as_ptr() as *mut _) 
+        };
+        
+        if result == 0 {
             Ok(())
+        } else {
+            Err(GraphvizError::AttributeSetFailed)
         }
     }
     
@@ -1021,20 +1036,35 @@ impl<'a> AttributeContainer for Node<'a> {
 
 impl<'a> AttributeContainer for Edge<'a> {
     fn set_attribute(&self, name: &str, value: &str) -> Result<(), GraphvizError> {
-        let c_name = CString::new(name)?;
-        let c_value = CString::new(value)?;
+        let graph = unsafe { sys::agraphof(self.inner as *mut _) };
+        let name_cstr = CString::new(name)?;
+        let value_cstr = CString::new(value)?;
+        let empty_str = CString::new("")?;
         
-        // Get the graph from the edge to access its inner Agraph_t
-        let graph_ptr = unsafe { sys::agraphof(self.inner) };
-
-        let result = unsafe {
-            sys::agset(self.inner as *mut sys::Agobj_t, c_name.as_ptr(), c_value.as_ptr())
+        // First create/get the attribute with empty string as default
+        // This avoids setting a meaningful default for all edges
+        let sym = unsafe {
+            sys::agattr(
+                graph,
+                sys::AGEDGE as i32,
+                name_cstr.as_ptr() as *mut _,
+                empty_str.as_ptr()
+            )
         };
         
-        if result.is_null() {
-            Err(GraphvizError::AttributeSetFailed)
-        } else {
+        if sym.is_null() {
+            return Err(GraphvizError::AttributeSetFailed);
+        }
+        
+        // Now set the value only on this specific edge
+        let result = unsafe { 
+            sys::agxset(self.inner as *mut _, sym, value_cstr.as_ptr() as *mut _) 
+        };
+        
+        if result == 0 {
             Ok(())
+        } else {
+            Err(GraphvizError::AttributeSetFailed)
         }
     }
     

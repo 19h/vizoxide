@@ -111,9 +111,9 @@ checksum = "a8d1add55171497b4705a648c6b583acafb01d58050a51727785f0b2c8e0a2b2"
 
 [[package]]
 name = "graphviz-sys"
-version = "1.0.0"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "038447678719838760ddc59cddad06c9f940b79e85f413dc1e3b4d9a513ff187"
+checksum = "97dbac5b269c7160b78812a9873f548668aa34b62f28f7a64328a6cd94feb47d"
 dependencies = [
  "bindgen",
 ]

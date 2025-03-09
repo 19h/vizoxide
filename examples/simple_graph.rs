@@ -29,6 +29,22 @@ fn main() -> Result<(), Box<dyn Error>> {
     node_b.set_attribute("style", "filled")?;
     node_b.set_attribute("fillcolor", "lightblue")?;
     
+    // Debug prints to check attribute values
+    println!("Node A attributes:");
+    println!("  shape: {:?}", node_a.get_attribute("shape")?);
+    println!("  style: {:?}", node_a.get_attribute("style")?);
+    println!("  fillcolor: {:?}", node_a.get_attribute("fillcolor")?);
+    
+    println!("Node B attributes:");
+    println!("  shape: {:?}", node_b.get_attribute("shape")?);
+    println!("  style: {:?}", node_b.get_attribute("style")?);
+    println!("  fillcolor: {:?}", node_b.get_attribute("fillcolor")?);
+    
+    println!("Node C attributes:");
+    println!("  shape: {:?}", node_c.get_attribute("shape")?);
+    println!("  style: {:?}", node_c.get_attribute("style")?);
+    println!("  fillcolor: {:?}", node_c.get_attribute("fillcolor")?);
+    
     // Apply the layout using the Dot engine.
     apply_layout(&context, &mut graph, Engine::Dot)?;
     
