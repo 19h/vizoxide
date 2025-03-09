@@ -984,29 +984,20 @@ impl AttributeContainer for Graph {
 
 impl<'a> AttributeContainer for Node<'a> {
     fn set_attribute(&self, name: &str, value: &str) -> Result<(), GraphvizError> {
-        let graph = unsafe { sys::agraphof(self.inner as *mut _) };
-        let name = CString::new(name)?;
-        let value = CString::new(value)?;
+        let c_name = CString::new(name)?;
+        let c_value = CString::new(value)?;
         
-        let sym = unsafe {
-            sys::agattr(
-                graph,
-                sys::AGNODE as i32,
-                name.as_ptr() as *mut _,
-                value.as_ptr() as *mut _,
-            )
+        // Get the graph from the node to access its inner Agraph_t
+        let graph_ptr = unsafe { sys::agraphof(self.inner) };
+        
+        let result = unsafe {
+            sys::agset(self.inner as *mut sys::Agobj_t, c_name.as_ptr(), c_value.as_ptr())
         };
         
-        if sym.is_null() {
-            return Err(GraphvizError::AttributeSetFailed);
-        }
-        
-        let result = unsafe { sys::agxset(self.inner as *mut _, sym, value.as_ptr() as *mut _) };
-        
-        if result == 0 {
-            Ok(())
-        } else {
+        if result.is_null() {
             Err(GraphvizError::AttributeSetFailed)
+        } else {
+            Ok(())
         }
     }
     
@@ -1030,29 +1021,20 @@ impl<'a> AttributeContainer for Node<'a> {
 
 impl<'a> AttributeContainer for Edge<'a> {
     fn set_attribute(&self, name: &str, value: &str) -> Result<(), GraphvizError> {
-        let graph = unsafe { sys::agraphof(self.inner as *mut _) };
-        let name = CString::new(name)?;
-        let value = CString::new(value)?;
+        let c_name = CString::new(name)?;
+        let c_value = CString::new(value)?;
         
-        let sym = unsafe {
-            sys::agattr(
-                graph,
-                sys::AGEDGE as i32,
-                name.as_ptr() as *mut _,
-                value.as_ptr() as *mut _,
-            )
+        // Get the graph from the edge to access its inner Agraph_t
+        let graph_ptr = unsafe { sys::agraphof(self.inner) };
+
+        let result = unsafe {
+            sys::agset(self.inner as *mut sys::Agobj_t, c_name.as_ptr(), c_value.as_ptr())
         };
         
-        if sym.is_null() {
-            return Err(GraphvizError::AttributeSetFailed);
-        }
-        
-        let result = unsafe { sys::agxset(self.inner as *mut _, sym, value.as_ptr() as *mut _) };
-        
-        if result == 0 {
-            Ok(())
-        } else {
+        if result.is_null() {
             Err(GraphvizError::AttributeSetFailed)
+        } else {
+            Ok(())
         }
     }
     
