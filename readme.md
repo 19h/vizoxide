@@ -42,7 +42,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-graphviz = "1.0.0"
+vizoxide = "1.0.5"
 ```
 
 ## Basic Usage
