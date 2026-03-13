@@ -247,7 +247,7 @@ pub fn render_to_string(
     
     // Prepare pointers to receive rendered data and length
     let mut buffer_ptr: *mut std::os::raw::c_char = std::ptr::null_mut();
-    let mut length: std::os::raw::c_uint = 0;
+    let mut length: usize = 0;
     
     // Call GraphViz rendering function to generate in-memory representation
     let result = unsafe {
@@ -319,7 +319,7 @@ pub fn render_to_bytes(
     
     // Prepare pointers to receive rendered data and length
     let mut buffer_ptr: *mut std::os::raw::c_char = std::ptr::null_mut();
-    let mut length: std::os::raw::c_uint = 0;
+    let mut length: usize = 0;
     
     // Call GraphViz rendering function to generate in-memory representation
     let result = unsafe {
