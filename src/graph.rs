@@ -185,7 +185,7 @@ impl Graph {
     /// # Returns
     ///
     /// A Result containing the new Node or an error
-    pub fn add_node(&self, name: &str) -> Result<Node, GraphvizError> {
+    pub fn add_node(&self, name: &str) -> Result<Node<'_>, GraphvizError> {
         let name = CString::new(name)?;
         let inner = unsafe { 
             sys::agnode(self.inner, name.as_ptr() as *mut _, 1) 
@@ -207,7 +207,7 @@ impl Graph {
     /// # Returns
     ///
     /// A NodeBuilder instance
-    pub fn create_node(&self, name: &str) -> NodeBuilder {
+    pub fn create_node(&self, name: &str) -> NodeBuilder<'_> {
         NodeBuilder::new(self, name)
     }
     
@@ -222,7 +222,7 @@ impl Graph {
     /// # Returns
     ///
     /// A Result containing the new Edge or an error
-    pub fn add_edge(&self, from: &Node, to: &Node, name: Option<&str>) -> Result<Edge, GraphvizError> {
+    pub fn add_edge(&self, from: &Node, to: &Node, name: Option<&str>) -> Result<Edge<'_>, GraphvizError> {
         let name_cstr = name.map(CString::new).transpose()?;
         let name_ptr = name_cstr.as_ref()
             .map_or(ptr::null_mut(), |cs| cs.as_ptr() as *mut _);
@@ -262,7 +262,7 @@ impl Graph {
     /// # Returns
     ///
     /// Option containing the node if found
-    pub fn get_node(&self, name: &str) -> Result<Option<Node>, GraphvizError> {
+    pub fn get_node(&self, name: &str) -> Result<Option<Node<'_>>, GraphvizError> {
         let name = CString::new(name)?;
         let inner = unsafe { 
             sys::agnode(self.inner, name.as_ptr() as *mut _, 0) 
@@ -285,7 +285,7 @@ impl Graph {
     /// # Returns
     ///
     /// Option containing the edge if found
-    pub fn find_edge(&self, from: &Node, to: &Node) -> Option<Edge> {
+    pub fn find_edge(&self, from: &Node, to: &Node) -> Option<Edge<'_>> {
         let inner = unsafe { 
             sys::agedge(self.inner, from.inner, to.inner, ptr::null_mut(), 0) 
         };
@@ -302,7 +302,7 @@ impl Graph {
     /// # Returns
     ///
     /// A NodeIter that iterates over all nodes
-    pub fn nodes(&self) -> NodeIter {
+    pub fn nodes(&self) -> NodeIter<'_> {
         NodeIter {
             graph: self,
             next: unsafe { sys::agfstnode(self.inner) },
@@ -314,7 +314,7 @@ impl Graph {
     /// # Returns
     ///
     /// An EdgeIter that iterates over all edges
-    pub fn edges(&self) -> EdgeIter {
+    pub fn edges(&self) -> EdgeIter<'_> {
         let first_node = unsafe { sys::agfstnode(self.inner) };
         let first_edge = if !first_node.is_null() {
             unsafe { sys::agfstedge(self.inner, first_node) }
@@ -996,7 +996,7 @@ impl<'a> AttributeContainer for Node<'a> {
                 graph,
                 sys::AGNODE as i32,
                 name_cstr.as_ptr() as *mut _,
-                empty_str.as_ptr()
+                empty_str.as_ptr() as *mut _,
             )
         };
         
@@ -1048,7 +1048,7 @@ impl<'a> AttributeContainer for Edge<'a> {
                 graph,
                 sys::AGEDGE as i32,
                 name_cstr.as_ptr() as *mut _,
-                empty_str.as_ptr()
+                empty_str.as_ptr() as *mut _,
             )
         };
         
